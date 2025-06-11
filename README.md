@@ -6,7 +6,7 @@ Este proyecto es una API CRUD de productos usando FastAPI, SQLAlchemy y SQLite.
 
 1. **Clona el repositorio**
    ```bash
-   git clone https://github.com/tu_usuario/tu_repositorio.git
+   git clone https://github.com/cristianzambrano/backendFastAPI
    cd tu_repositorio
    ```
 
