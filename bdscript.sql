@@ -9,7 +9,7 @@ CREATE TABLE productos (
     valor DECIMAL(10,2) NOT NULL
 );
 
--- Insertar 30 registros
+
 INSERT INTO productos (id, nombre, categoria, valor) VALUES
 ('1', 'iPhone 15 Pro', 'Smartphones', 1350),
 ('2', 'Samsung Galaxy S24 Ultra', 'Smartphones', 1450),
