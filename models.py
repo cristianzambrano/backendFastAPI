@@ -1,11 +1,10 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, String, Float, Integer
 from database import Base
-from typing import Any
 
 class Producto(Base):
     __tablename__ = "productos"
 
-    id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String(100), nullable=False)
-    descripcion = Column(String(250), nullable=False)
-    precio = Column(Float, nullable=False)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    nombre = Column(String(255), nullable=False)
+    categoria = Column(String(100), nullable=False)
+    valor = Column(Float, nullable=False)
