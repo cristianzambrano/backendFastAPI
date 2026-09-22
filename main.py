@@ -7,7 +7,7 @@ from schemas import ProductoSchema
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="API eCommerce 2025 UTEQ")
+app = FastAPI(title="Despliegue de Aplicaciones Web y CI/CD en AWS")
 
 def get_db():
     db = SessionLocal()

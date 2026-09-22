@@ -1,3 +1,5 @@
+# Compatible con Python 3.13 o anterior.
+# fastapi-crudrouter 0.8.6 requiere Pydantic 1.x.
 anyio==4.9.0
 click==8.2.1
 colorama==0.4.6

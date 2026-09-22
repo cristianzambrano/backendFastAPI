@@ -5,7 +5,16 @@ Se incluyen validaciones con Pydantic y un CRUD automático gracias a `fastapi-c
 
 ---
 
-## 🚀 Instalación y uso
+## Requisitos
+
+- Python 3.13 o anterior.
+- MySQL en ejecución.
+
+`fastapi-crudrouter==0.8.6` utiliza Pydantic 1.x. Python 3.14 no es compatible
+con esta combinación de dependencias, por lo que debes usar Python 3.13 o una
+versión anterior.
+
+## Instalación y uso
 
 ### 1. Clona el repositorio
 ```bash
@@ -13,13 +22,24 @@ git clone https://github.com/cristianzambrano/backendFastAPI
 cd backendFastAPI
 ```
 
-### 2. Crea un entorno virtual (opcional pero recomendado)
-```bash
-python -m venv venv
-# Activa el entorno virtual:
-# En Windows:
+### 2. Crea un entorno virtual
+En **Windows (CMD)**:
+
+```cmd
+deactivate
+rmdir /s /q venv
+py -3.13 -m venv venv
 venv\Scripts\activate
-# En Linux/Mac:
+```
+
+Si la carpeta `venv` todavía no existe, puedes ignorar el comando `rmdir`.
+
+En **macOS o Linux**:
+
+```bash
+deactivate
+rm -rf venv
+python3.13 -m venv venv
 source venv/bin/activate
 ```
 
@@ -38,6 +58,10 @@ DB_NAME=tienda
 ```bash
 pip install -r requirements.txt
 ```
+
+No actualices Pydantic a la versión 2 mientras uses
+`fastapi-crudrouter==0.8.6`, porque esa versión del router no es compatible
+con Pydantic 2.
 
 📌 Dependencias principales:
 - **fastapi** → Framework de la API.
