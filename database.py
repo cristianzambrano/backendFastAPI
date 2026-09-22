@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import URL, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
@@ -9,11 +9,18 @@ load_dotenv()
 
 DB_USER = os.getenv("DB_USER", "root")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "123456")
-DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
 DB_PORT = os.getenv("DB_PORT", "3306")
 DB_NAME = os.getenv("DB_NAME", "tienda")
 
-DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+DATABASE_URL = URL.create(
+	"mysql+pymysql",
+	username=DB_USER,
+	password=DB_PASSWORD,
+	host=DB_HOST,
+	port=int(DB_PORT),
+	database=DB_NAME,
+)
 
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 
