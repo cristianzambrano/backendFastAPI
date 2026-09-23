@@ -14,7 +14,7 @@ app = FastAPI(title="Despliegue de Aplicaciones Web y CI/CD en AWS")
 
 @app.post("/webhook")
 async def webhook(request: Request):
-    subprocess.call(["/opt/bitnami/projects/backendFastAPI/deploy.sh"])
+    subprocess.run( ["/bin/bash", "/opt/bitnami/projects/backendFastAPI/deploy.sh"], check=True )
     return {"status": "ok"}
 
 def get_db():
