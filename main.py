@@ -5,6 +5,9 @@ from database import engine, Base, SessionLocal
 from models import Producto
 from schemas import ProductoSchema
 
+from fastapi import FastAPI, Request
+import subprocess
+
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Despliegue de Aplicaciones Web y CI/CD en AWS")
@@ -29,3 +32,9 @@ app.include_router(router)
 @app.get("/")
 def root():
     return {"message": "API eCommerce 2027 UTB"}
+
+@app.post("/webhook")
+async def webhook(request: Request):
+    payload = await request.json()
+    subprocess.call(["/opt/bitnami/projects/backendFastAPI/deploy.sh"])
+    return {"status": "ok"}
