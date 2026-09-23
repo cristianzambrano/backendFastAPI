@@ -28,4 +28,4 @@ app.include_router(router)
 
 @app.get("/")
 def root():
-    return {"message": "API eCommerce 2025"}
+    return {"message": "API eCommerce 2026 - Despliegue de Aplicaciones Web y CI/CD en AWS"}
