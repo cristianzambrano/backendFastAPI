@@ -20,18 +20,33 @@ logger = logging.getLogger(__name__)
 import subprocess
 from fastapi import Request, HTTPException
 
+
+import subprocess
+import logging
+from fastapi import Request, HTTPException
+
+logger = logging.getLogger(__name__)
+
 @app.post("/webhook")
 async def webhook(request: Request):
-    # Validar aquí la firma de GitHub y la rama main.
+    # Antes de ejecutar: validar firma de GitHub,
+    # evento push y rama main.
 
     result = subprocess.run(
-        ["sudo", "-n", "systemctl", "start", "--no-block",
-         "fastapi-deploy.service"],
+        [
+            "/usr/bin/sudo",
+            "-n",
+            "/usr/bin/systemctl",
+            "start",
+            "--no-block",
+            "fastapi-deploy.service"
+        ],
         capture_output=True,
         text=True
     )
 
     if result.returncode != 0:
+        logger.error("Error deploy: %s", result.stderr)
         raise HTTPException(
             status_code=500,
             detail="No se pudo iniciar el despliegue"
