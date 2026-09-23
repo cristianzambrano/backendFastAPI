@@ -14,14 +14,6 @@ app = FastAPI(title="Despliegue de Aplicaciones Web y CI/CD en AWS")
 
 @app.post("/webhook")
 async def webhook(request: Request):
-    body = await request.body()
-    if body:
-        try:
-            payload = json.loads(body)
-        except json.JSONDecodeError:
-            return {"status": "error", "message": "El cuerpo debe ser JSON válido"}
-    else:
-        payload = {}
     subprocess.call(["/opt/bitnami/projects/backendFastAPI/deploy.sh"])
     return {"status": "ok"}
 
