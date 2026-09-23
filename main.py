@@ -6,16 +6,38 @@ from models import Producto
 from schemas import ProductoSchema
 
 import json
-import subprocess
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Despliegue de Aplicaciones Web y CI/CD en AWS")
 
+import subprocess
+import logging
+from fastapi import Request, HTTPException
+
+logger = logging.getLogger(__name__)
+
+import subprocess
+from fastapi import Request, HTTPException
+
 @app.post("/webhook")
 async def webhook(request: Request):
-    subprocess.run( ["/bin/bash", "/opt/bitnami/projects/backendFastAPI/deploy.sh"], check=True )
-    return {"status": "ok"}
+    # Validar aquí la firma de GitHub y la rama main.
+
+    result = subprocess.run(
+        ["sudo", "-n", "systemctl", "start", "--no-block",
+         "fastapi-deploy.service"],
+        capture_output=True,
+        text=True
+    )
+
+    if result.returncode != 0:
+        raise HTTPException(
+            status_code=500,
+            detail="No se pudo iniciar el despliegue"
+        )
+
+    return {"status": "deploy solicitado"}
 
 def get_db():
     db = SessionLocal()
