@@ -22,7 +22,7 @@ async def webhook(request: Request):
             return {"status": "error", "message": "El cuerpo debe ser JSON válido"}
     else:
         payload = {}
-    #subprocess.call(["/opt/bitnami/projects/backendFastAPI/deploy.sh"])
+    subprocess.call(["/opt/bitnami/projects/backendFastAPI/deploy.sh"])
     return {"status": "ok"}
 
 def get_db():
