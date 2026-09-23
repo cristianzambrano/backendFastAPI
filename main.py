@@ -44,5 +44,5 @@ app.include_router(router)
 
 @app.get("/")
 def root():
-    return {"message": "API eCommerce 2026 UTB"}
+    return {"message": "API eCommerce 2026"}
 
