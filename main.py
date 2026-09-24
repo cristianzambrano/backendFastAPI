@@ -73,5 +73,5 @@ app.include_router(router)
 
 @app.get("/")
 def root():
-    return {"message": "API Despliegue de Aplicaciones Web y CI/CD en AWS 2026."}
+    return {"message": "API Despliegue de Aplicaciones Web y CI/CD en AWS UTB 2026."}
 
