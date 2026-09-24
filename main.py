@@ -27,32 +27,32 @@ from fastapi import Request, HTTPException
 
 logger = logging.getLogger(__name__)
 
-@app.post("/webhook")
-async def webhook(request: Request):
+#@app.post("/webhook")
+#async def webhook(request: Request):
     # Antes de ejecutar: validar firma de GitHub,
     # evento push y rama main.
 
-    result = subprocess.run(
-        [
-            "/usr/bin/sudo",
-            "-n",
-            "/usr/bin/systemctl",
-            "start",
-            "--no-block",
-            "fastapi-deploy.service"
-        ],
-        capture_output=True,
-        text=True
-    )
+#    result = subprocess.run(
+#        [
+#            "/usr/bin/sudo",
+#            "-n",
+#            "/usr/bin/systemctl",
+#            "start",
+#            "--no-block",
+#            "fastapi-deploy.service"
+#        ],
+#        capture_output=True,
+#        text=True
+#    )
 
-    if result.returncode != 0:
-        logger.error("Error deploy: %s", result.stderr)
-        raise HTTPException(
-            status_code=500,
-            detail="No se pudo iniciar el despliegue"
-        )
+#    if result.returncode != 0:
+#        logger.error("Error deploy: %s", result.stderr)
+#        raise HTTPException(
+#            status_code=500,
+#            detail="No se pudo iniciar el despliegue"
+#        )
 
-    return {"status": "deploy solicitado"}
+#    return {"status": "deploy solicitado"}
 
 def get_db():
     db = SessionLocal()
